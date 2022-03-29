@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 
+// @ts-ignore
 import EmptyNotesListImage from "images/EmptyNotesList";
-import { Delete } from "neetoicons";
+// @ts-ignore
 import { Button, PageLoader } from "neetoui";
-import { Container, Header, SubHeader } from "neetoui/layouts";
+// @ts-ignore
+import { Container, Header } from "neetoui/layouts";
 
 import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
@@ -28,8 +30,10 @@ const Notes = () => {
     try {
       setLoading(true);
       const { data } = await notesApi.fetch();
+      // @ts-ignore
       setNotes(data.notes);
     } catch (error) {
+      // @ts-ignore
       logger.error(error);
     } finally {
       setLoading(false);
@@ -43,7 +47,8 @@ const Notes = () => {
   return (
     <Container>
       <Header
-        title="Notes"
+        title="All Notes"
+        menuBarToggle={() => {}}
         actionBlock={
           <Button
             onClick={() => setShowNewNotePane(true)}
@@ -57,23 +62,12 @@ const Notes = () => {
         }}
       />
       {notes.length ? (
-        <>
-          <SubHeader
-            rightActionBlock={
-              <Button
-                label="Delete"
-                icon={Delete}
-                onClick={() => setShowDeleteAlert(true)}
-                disabled={!selectedNoteIds.length}
-              />
-            }
-          />
-          <Table
-            setSelectedNoteIds={setSelectedNoteIds}
-            notes={notes}
-            fetchNotes={fetchNotes}
-          />
-        </>
+        <Table
+          // @ts-ignore
+          setSelectedNoteIds={setSelectedNoteIds}
+          notes={notes}
+          fetchNotes={fetchNotes}
+        />
       ) : (
         <EmptyState
           image={EmptyNotesListImage}
