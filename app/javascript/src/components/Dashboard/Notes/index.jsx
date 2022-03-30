@@ -57,7 +57,12 @@ const Notes = () => {
         }}
       />
       {notes.length ? (
-        <Table notes={notes} fetchNotes={fetchNotes} />
+        <Table
+          notes={notes}
+          fetchNotes={fetchNotes}
+          setSelectedNoteIds={setSelectedNoteIds}
+          setShowDeleteAlert={setShowDeleteAlert}
+        />
       ) : (
         <EmptyState
           image={EmptyNotesListImage}

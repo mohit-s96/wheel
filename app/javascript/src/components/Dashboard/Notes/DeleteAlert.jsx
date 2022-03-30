@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Alert } from "neetoui";
+import { Modal, Typography, Button } from "neetoui";
 
 import notesApi from "apis/notes";
 
@@ -26,16 +26,27 @@ const DeleteAlert = ({
   };
 
   return (
-    <Alert
+    <Modal
       isOpen
-      onSubmit={handleDelete}
       onClose={onClose}
-      message="Are you sure you want to continue? This cannot be undone."
-      title={`Delete ${selectedNoteIds.length} ${
-        selectedNoteIds.length > 1 ? "notes" : "note"
-      }?`}
-      isSubmitting={deleting}
-    />
+      size="md"
+      closeButton={false}
+      loading={deleting}
+    >
+      <Modal.Header>
+        <Typography style="h2">Delete Note</Typography>
+      </Modal.Header>
+      <Modal.Body>
+        <Typography style="body2" lineHeight="normal">
+          Are you sure you want to delete this note? This action cannot be
+          undone.
+        </Typography>
+      </Modal.Body>
+      <Modal.Footer className="space-x-2">
+        <Button size="large" label="Continue" onClick={handleDelete} />
+        <Button style="text" size="large" label="Cancel" onClick={onClose} />
+      </Modal.Footer>
+    </Modal>
   );
 };
 
