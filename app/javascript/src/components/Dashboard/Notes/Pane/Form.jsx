@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
+import { Check } from "@bigbinary/neeto-icons";
 import { Formik, Form } from "formik";
-import { Button, Pane } from "neetoui";
+import { Button, Pane, Select } from "neetoui";
 import { Input, Textarea } from "neetoui/formik";
 
 import notesApi from "apis/notes";
@@ -40,32 +41,84 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
               label="Title"
               name="title"
               className="w-full flex-grow-0"
+              placeholder="Enter a title"
               required
             />
             <Textarea
+              required
+              rows={2}
               label="Description"
               name="description"
               className="w-full flex-grow-0"
-              rows={8}
+              placeholder="Enter note description"
+            />
+            <Select
               required
+              isClearable
+              isSearchable
+              label="Assigned Contacts"
+              name="ContactList"
+              size="large"
+              className="w-full flex-grow-0"
+              placeholder="Select a role"
+              options={[
+                {
+                  label: "Mohit Srivastava",
+                  value: "mohit-s96",
+                },
+                {
+                  label: "Mohit Srivastava",
+                  value: "mohit-s96",
+                },
+                {
+                  label: "Mohit Srivastava",
+                  value: "mohit-s96",
+                },
+              ]}
+            />
+            <Select
+              required
+              isClearable
+              isSearchable
+              label="Tags"
+              name="tags"
+              size="large"
+              className="w-full flex-grow-0"
+              placeholder="Select a tag"
+              options={[
+                {
+                  label: "Getting Started",
+                  value: "gettingStarted",
+                },
+                {
+                  label: "Urgent",
+                  value: "urgent",
+                },
+                {
+                  label: "Website",
+                  value: "website",
+                },
+              ]}
             />
           </Pane.Body>
           <Pane.Footer>
             <Button
               type="submit"
-              label={isEdit ? "Update" : "Save Changes"}
               size="large"
               style="primary"
               className="mr-3"
+              icon={Check}
+              iconPosition="right"
+              label={isEdit ? "Update" : "Save Changes"}
               disabled={isSubmitting}
               loading={isSubmitting}
               onClick={() => setSubmitted(true)}
             />
             <Button
-              onClick={onClose}
               label="Cancel"
               size="large"
               style="text"
+              onClick={onClose}
             />
           </Pane.Footer>
         </Form>
