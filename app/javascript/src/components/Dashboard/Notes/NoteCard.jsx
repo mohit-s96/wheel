@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Clock, MenuVertical } from "@bigbinary/neeto-icons";
-// @ts-ignore
 import { Typography, Avatar, Tag, Dropdown } from "neetoui";
 
 const NoteCard = ({
@@ -24,7 +23,6 @@ const NoteCard = ({
             <span className="w-10/12 p-1">Delete</span>
           </li>
         </Dropdown>
-        {/* <Button icon={MenuVertical} style="text" /> */}
       </div>
       <Typography className="neeto-ui-text-gray-600 p-2" style="body2">
         {body}
@@ -39,7 +37,7 @@ const NoteCard = ({
       ))}
       <div className="neeto-ui-text-gray-600 flex items-center gap-3">
         <Clock size={18} />
-        <span>Created {createdAt} hours ago</span>
+        <Typography style="body2">Created {createdAt} hours ago</Typography>
         <Avatar
           size="small"
           user={{

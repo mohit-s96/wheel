@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-// @ts-ignore
 import EmptyNotesListImage from "images/EmptyNotesList";
-// @ts-ignore
 import { Button, PageLoader } from "neetoui";
-// @ts-ignore
 import { Container, Header } from "neetoui/layouts";
 
 import notesApi from "apis/notes";
@@ -30,10 +27,8 @@ const Notes = () => {
     try {
       setLoading(true);
       const { data } = await notesApi.fetch();
-      // @ts-ignore
       setNotes(data.notes);
     } catch (error) {
-      // @ts-ignore
       logger.error(error);
     } finally {
       setLoading(false);
@@ -62,12 +57,7 @@ const Notes = () => {
         }}
       />
       {notes.length ? (
-        <Table
-          // @ts-ignore
-          setSelectedNoteIds={setSelectedNoteIds}
-          notes={notes}
-          fetchNotes={fetchNotes}
-        />
+        <Table notes={notes} fetchNotes={fetchNotes} />
       ) : (
         <EmptyState
           image={EmptyNotesListImage}
