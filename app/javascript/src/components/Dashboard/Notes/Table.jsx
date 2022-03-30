@@ -10,18 +10,18 @@ const Table = ({
   setShowDeleteAlert,
 }) => {
   const [showEditNote, setShowEditNote] = useState(false);
+  const [selectedNote, setSelectedNote] = useState({});
   return (
     <>
       <div className="notes-table-height w-full">
         {notes.map(note => (
           <NoteCard
+            key={note.id}
+            note={note}
             setSelectedNoteIds={setSelectedNoteIds}
             setShowDeleteAlert={setShowDeleteAlert}
-            key={note.id}
-            title={note.title}
-            createdAt="2"
-            body={note.description}
-            id={note.id}
+            setShowEditPane={setShowEditNote}
+            setSelectedNote={setSelectedNote}
           />
         ))}
       </div>
@@ -29,7 +29,7 @@ const Table = ({
         showPane={showEditNote}
         setShowPane={setShowEditNote}
         fetchNotes={fetchNotes}
-        note={[]}
+        note={selectedNote}
       />
     </>
   );

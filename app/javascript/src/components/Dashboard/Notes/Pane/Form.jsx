@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
+import { Check } from "@bigbinary/neeto-icons";
 import { Formik, Form } from "formik";
-import { Button, Pane } from "neetoui";
+import { Button, Pane, Select } from "neetoui";
 import { Input, Textarea } from "neetoui/formik";
 
 import notesApi from "apis/notes";
@@ -40,14 +41,64 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
               label="Title"
               name="title"
               className="w-full flex-grow-0"
+              placeholder="Enter a title"
               required
             />
             <Textarea
               label="Description"
               name="description"
               className="w-full flex-grow-0"
-              rows={8}
+              rows={2}
+              placeholder="Enter note description"
               required
+            />
+            <Select
+              isClearable
+              isSearchable
+              label="Assigned Contacts"
+              name="ContactList"
+              size="large"
+              className="w-full flex-grow-0"
+              required
+              options={[
+                {
+                  label: "Mohit Srivastava",
+                  value: "mohit-s96",
+                },
+                {
+                  label: "Mohit Srivastava",
+                  value: "mohit-s96",
+                },
+                {
+                  label: "Mohit Srivastava",
+                  value: "mohit-s96",
+                },
+              ]}
+              placeholder="Select a role"
+            />
+            <Select
+              isClearable
+              isSearchable
+              label="Tags"
+              name="tags"
+              size="large"
+              className="w-full flex-grow-0"
+              required
+              options={[
+                {
+                  label: "Getting Started",
+                  value: "gettingStarted",
+                },
+                {
+                  label: "Urgent",
+                  value: "urgent",
+                },
+                {
+                  label: "Website",
+                  value: "website",
+                },
+              ]}
+              placeholder="Select a tag"
             />
           </Pane.Body>
           <Pane.Footer>
@@ -60,6 +111,8 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
               disabled={isSubmitting}
               loading={isSubmitting}
               onClick={() => setSubmitted(true)}
+              icon={Check}
+              iconPosition="right"
             />
             <Button
               onClick={onClose}
