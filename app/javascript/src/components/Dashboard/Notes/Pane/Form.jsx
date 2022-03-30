@@ -45,21 +45,22 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
               required
             />
             <Textarea
+              required
+              rows={2}
               label="Description"
               name="description"
               className="w-full flex-grow-0"
-              rows={2}
               placeholder="Enter note description"
-              required
             />
             <Select
+              required
               isClearable
               isSearchable
               label="Assigned Contacts"
               name="ContactList"
               size="large"
               className="w-full flex-grow-0"
-              required
+              placeholder="Select a role"
               options={[
                 {
                   label: "Mohit Srivastava",
@@ -74,16 +75,16 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
                   value: "mohit-s96",
                 },
               ]}
-              placeholder="Select a role"
             />
             <Select
+              required
               isClearable
               isSearchable
               label="Tags"
               name="tags"
               size="large"
               className="w-full flex-grow-0"
-              required
+              placeholder="Select a tag"
               options={[
                 {
                   label: "Getting Started",
@@ -98,27 +99,26 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
                   value: "website",
                 },
               ]}
-              placeholder="Select a tag"
             />
           </Pane.Body>
           <Pane.Footer>
             <Button
               type="submit"
-              label={isEdit ? "Update" : "Save Changes"}
               size="large"
               style="primary"
               className="mr-3"
+              icon={Check}
+              iconPosition="right"
+              label={isEdit ? "Update" : "Save Changes"}
               disabled={isSubmitting}
               loading={isSubmitting}
               onClick={() => setSubmitted(true)}
-              icon={Check}
-              iconPosition="right"
             />
             <Button
-              onClick={onClose}
               label="Cancel"
               size="large"
               style="text"
+              onClick={onClose}
             />
           </Pane.Footer>
         </Form>

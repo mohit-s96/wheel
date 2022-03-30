@@ -15,10 +15,12 @@ const NoteCard = ({
     setShowDeleteAlert(true);
     setSelectedNoteIds([id]);
   };
+
   const handleEditNote = () => {
     setShowEditPane(true);
     setSelectedNote(note);
   };
+
   return (
     <div className="neeto-ui-border-gray-300 my-4 flex flex-col border-2 px-1">
       <div className="p-2">
