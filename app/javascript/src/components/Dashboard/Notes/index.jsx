@@ -8,7 +8,7 @@ import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
 
 import DeleteAlert from "./DeleteAlert";
-import NotesMenu from "./MenuBar";
+import NotesMenu from "./NotesMenu";
 import NewNotePane from "./Pane/Create";
 import Table from "./Table";
 
