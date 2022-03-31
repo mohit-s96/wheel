@@ -2,6 +2,23 @@ import React from "react";
 
 import { MenuHorizontal } from "@bigbinary/neeto-icons";
 import { Avatar, Typography } from "neetoui";
+import * as yup from "yup";
+
+function noOp() {}
+
+export const NO_OP_FUNCTION = noOp;
+
+export const CONTACTS_FORM_INITIAL_FORM_VALUES = {
+  first_name: "",
+  last_name: "",
+  email: "",
+};
+
+export const CONTACTS_FORM_VALIDATION_SCHEMA = yup.object().shape({
+  first_name: yup.string().required("First name is required"),
+  last_name: yup.string().required("Last name is required"),
+  email: yup.string().email().required("Email is requires"),
+});
 
 export const NOTES_TABLE_COLUMN_DATA = [
   {
