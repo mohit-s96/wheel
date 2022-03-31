@@ -2,23 +2,17 @@ import React, { useState } from "react";
 
 import { Check } from "@bigbinary/neeto-icons";
 import { Formik, Form } from "formik";
-import { Button, Pane, Select } from "neetoui";
-import { Input, Textarea } from "neetoui/formik";
+import { Button, Pane, Select, Toastr } from "neetoui";
+import { Input } from "neetoui/formik";
 
-import notesApi from "apis/notes";
+import { CONTACTS_FORM_VALIDATION_SCHEMA } from "../constants";
 
-import { NOTES_FORM_VALIDATION_SCHEMA } from "../constants";
-
-export default function NoteForm({ onClose, refetch, note, isEdit }) {
+export default function NoteForm({ onClose, refetch, contact }) {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async values => {
+  const handleSubmit = () => {
     try {
-      if (isEdit) {
-        await notesApi.update(note.id, values);
-      } else {
-        await notesApi.create(values);
-      }
+      Toastr.success("Contact added successfully!!");
       refetch();
       onClose();
     } catch (err) {
@@ -28,63 +22,47 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
 
   return (
     <Formik
-      initialValues={note}
+      initialValues={contact}
       onSubmit={handleSubmit}
       validateOnBlur={submitted}
       validateOnChange={submitted}
-      validationSchema={NOTES_FORM_VALIDATION_SCHEMA}
+      validationSchema={CONTACTS_FORM_VALIDATION_SCHEMA}
     >
       {({ isSubmitting }) => (
         <Form className="w-full">
           <Pane.Body className="space-y-6">
+            <div className="flex w-full justify-between gap-4">
+              <Input
+                required
+                label="First Name"
+                name="first_name"
+                className="w-6/12 flex-grow-0"
+                placeholder="Enter first name"
+              />
+              <Input
+                required
+                label="Last Name"
+                name="last_name"
+                className="w-6/12 flex-grow-0"
+                placeholder="Enter last name"
+              />
+            </div>
             <Input
               required
-              label="Title"
-              name="title"
+              label="Email Address"
+              name="email"
               className="w-full flex-grow-0"
-              placeholder="Enter a title"
-            />
-            <Textarea
-              required
-              rows={2}
-              label="Description"
-              name="description"
-              className="w-full flex-grow-0"
-              placeholder="Enter note description"
+              placeholder="Enter your email address"
             />
             <Select
               required
               isClearable
               isSearchable
-              label="Assigned Contacts"
-              name="ContactList"
+              label="Role"
+              name="role"
               size="large"
               className="w-full flex-grow-0"
-              placeholder="Select a role"
-              options={[
-                {
-                  label: "Mohit Srivastava",
-                  value: "mohit-s96",
-                },
-                {
-                  label: "Mohit Srivastava",
-                  value: "mohit-s96",
-                },
-                {
-                  label: "Mohit Srivastava",
-                  value: "mohit-s96",
-                },
-              ]}
-            />
-            <Select
-              required
-              isClearable
-              isSearchable
-              label="Tags"
-              name="tags"
-              size="large"
-              className="w-full flex-grow-0"
-              placeholder="Select a tag"
+              placeholder="Select Role"
               options={[
                 {
                   label: "Getting Started",
@@ -109,7 +87,7 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
               className="mr-3"
               icon={Check}
               iconPosition="right"
-              label={isEdit ? "Update" : "Save Changes"}
+              label={"Save Changes"}
               disabled={isSubmitting}
               loading={isSubmitting}
               onClick={() => setSubmitted(true)}

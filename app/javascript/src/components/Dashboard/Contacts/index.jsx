@@ -8,6 +8,7 @@ import EmptyState from "components/Common/EmptyState";
 
 import { MOCK_CONTACTS } from "./constants";
 import SideMenu from "./ContactsMenu";
+import NewContactPane from "./Pane/Create";
 import Table from "./Table";
 import { createMockArray } from "./utils";
 
@@ -16,6 +17,7 @@ const contacts = createMockArray(200, MOCK_CONTACTS);
 const Contacts = () => {
   const [showMenu, setShowMenu] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showNewContactPane, setShowNewContactPane] = useState(false);
 
   return (
     <>
@@ -24,7 +26,13 @@ const Contacts = () => {
         <Header
           title="All Contacts"
           menuBarToggle={() => setShowMenu(!showMenu)}
-          actionBlock={<Button label="Add New Contact" icon="ri-add-line" />}
+          actionBlock={
+            <Button
+              onClick={() => setShowNewContactPane(true)}
+              label="Add New Note"
+              icon="ri-add-line"
+            />
+          }
           searchProps={{
             value: searchTerm,
             onChange: e => setSearchTerm(e.target.value),
@@ -41,6 +49,10 @@ const Contacts = () => {
             primaryAction={() => {}}
           />
         )}
+        <NewContactPane
+          showPane={showNewContactPane}
+          setShowPane={setShowNewContactPane}
+        />
       </Container>
     </>
   );
