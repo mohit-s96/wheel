@@ -6,8 +6,9 @@ import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
 
-import { MOCK_CONTACTS } from "./constants";
+import { MOCK_CONTACTS, NO_OP_FUNCTION } from "./constants";
 import SideMenu from "./ContactsMenu";
+import DeleteAlert from "./DeleteAlert";
 import NewContactPane from "./Pane/Create";
 import Table from "./Table";
 import { createMockArray } from "./utils";
@@ -18,6 +19,7 @@ const Contacts = () => {
   const [showMenu, setShowMenu] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [showNewContactPane, setShowNewContactPane] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
   return (
     <>
@@ -39,7 +41,7 @@ const Contacts = () => {
           }}
         />
         {contacts.length ? (
-          <Table contacts={contacts} />
+          <Table contacts={contacts} setShowDeleteAlert={setShowDeleteAlert} />
         ) : (
           <EmptyState
             image={EmptyNotesListImage}
@@ -53,6 +55,12 @@ const Contacts = () => {
           showPane={showNewContactPane}
           setShowPane={setShowNewContactPane}
         />
+        {showDeleteAlert && (
+          <DeleteAlert
+            onClose={() => setShowDeleteAlert(false)}
+            refetch={NO_OP_FUNCTION}
+          />
+        )}
       </Container>
     </>
   );
