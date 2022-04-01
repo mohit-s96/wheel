@@ -4,10 +4,7 @@ import { Pane, Typography } from "neetoui";
 
 import Form from "./Form";
 
-import {
-  CONTACTS_FORM_INITIAL_FORM_VALUES,
-  NO_OP_FUNCTION,
-} from "../constants";
+import { CONTACTS_FORM_INITIAL_FORM_VALUES, noop } from "../constants";
 
 export default function NewContactPane({ showPane, setShowPane }) {
   const onClose = () => setShowPane(false);
@@ -21,7 +18,7 @@ export default function NewContactPane({ showPane, setShowPane }) {
       </Pane.Header>
       <Form
         onClose={onClose}
-        refetch={NO_OP_FUNCTION}
+        refetch={noop}
         contact={CONTACTS_FORM_INITIAL_FORM_VALUES}
       />
     </Pane>
