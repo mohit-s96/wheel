@@ -1,8 +1,9 @@
 import React from "react";
 
-import { MenuHorizontal } from "@bigbinary/neeto-icons";
 import { Avatar, Typography } from "neetoui";
 import * as yup from "yup";
+
+import { RowSettingsIcon } from "./Table";
 
 function noOp() {}
 
@@ -52,7 +53,7 @@ export const NOTES_TABLE_COLUMN_DATA = [
   },
   {
     title: "settings",
-    render: () => <MenuHorizontal color="#68737d" size="24" />,
+    render: RowSettingsIcon,
     dataIndex: "settings",
     key: "settings",
     width: "20%",
