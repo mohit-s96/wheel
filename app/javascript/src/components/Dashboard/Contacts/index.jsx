@@ -6,7 +6,7 @@ import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
 
-import { MOCK_CONTACTS, NO_OP_FUNCTION } from "./constants";
+import { MOCK_CONTACTS, noop } from "./constants";
 import SideMenu from "./ContactsMenu";
 import DeleteAlert from "./DeleteAlert";
 import NewContactPane from "./Pane/Create";
@@ -27,7 +27,7 @@ const Contacts = () => {
       <Container>
         <Header
           title="All Contacts"
-          menuBarToggle={() => setShowMenu(!showMenu)}
+          menuBarToggle={() => setShowMenu(prev => !prev)}
           actionBlock={
             <Button
               onClick={() => setShowNewContactPane(true)}
@@ -58,7 +58,7 @@ const Contacts = () => {
         {showDeleteAlert && (
           <DeleteAlert
             onClose={() => setShowDeleteAlert(false)}
-            refetch={NO_OP_FUNCTION}
+            refetch={noop}
           />
         )}
       </Container>

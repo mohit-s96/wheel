@@ -4,6 +4,8 @@ import { Search, Settings, Plus } from "@bigbinary/neeto-icons";
 import { Typography } from "neetoui";
 import { MenuBar } from "neetoui/layouts";
 
+import { noop } from "./constants";
+
 const ContactsMenu = ({ showMenu = true }) => (
   <MenuBar
     showMenu={showMenu}
@@ -21,7 +23,7 @@ const ContactsMenu = ({ showMenu = true }) => (
       iconProps={[
         {
           icon: Search,
-          onClick: function noRefCheck() {},
+          onClick: noop,
         },
       ]}
     >
@@ -34,7 +36,7 @@ const ContactsMenu = ({ showMenu = true }) => (
         Segments
       </Typography>
     </MenuBar.SubTitle>
-    <MenuBar.Search collapse onCollapse={function noRefCheck() {}} />
+    <MenuBar.Search collapse onCollapse={noop} />
     <MenuBar.SubTitle
       iconProps={[
         {

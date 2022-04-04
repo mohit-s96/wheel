@@ -5,9 +5,7 @@ import * as yup from "yup";
 
 import { RowSettingsIcon } from "./Table";
 
-function noOp() {}
-
-export const NO_OP_FUNCTION = noOp;
+export const noop = () => {};
 
 export const CONTACTS_FORM_INITIAL_FORM_VALUES = {
   first_name: "",
